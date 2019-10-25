@@ -43,7 +43,7 @@ class NLayer_torch(nn.Module):
     This normalization part is borrowed from https://nvlabs.github.io/SPADE/
     The input(x[0]) goes to a batch normalization layer, the output features will be scaled and shifted based on the conditions (x[1])
     Args:
-        ch: number of input channels
+        in_size: number of input channels
     """
     def __init__(self, in_size):
         super(NLayer_torch, self).__init__()
