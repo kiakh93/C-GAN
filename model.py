@@ -2,7 +2,6 @@ import torch.nn as nn
 import torch.nn.functional as F
 import torch
 from torchvision.models import vgg19
-from IPython.core.debugger import set_trace
 import torchvision.models as models
 
 # Weights initializer
@@ -95,18 +94,18 @@ class ResBl(nn.Module):
 
 
 # Concatenation block
-class UpFeat(nn.Module):
+class Concatenation(nn.Module):
     """
     This is the Concatenation block class, this block is part of the main block (MainBl) 
     and concatenate the feature maps from previous up-sampling block and corresponding down-sampling block
-    NL represents Normaization Layer
+    NL represents Normalization Layer
     out_n represents the output after n number of operations
     Args:
         in_size: number of input channels
         out_size: number of input channels
     """
     def __init__(self, in_size, out_size):
-        super(UpFeat, self).__init__()
+        super(Concatenation, self).__init__()
 
         self.conv1 = nn.Conv2d(in_size, out_size, 3, 1, 1, bias=True)
         self.NL1 = NLayer_torch(out_size)
@@ -149,15 +148,7 @@ class MainBl(nn.Module):
 
 
 class GeneratorUNet(nn.Module):
-    """ 
-    The implementation of the UResNet consisting of three down-sampling block, a bridge block, and three up-sampling block
-    This network serves as the generator of our framwork
-    chN and conN is for matching the number of feature maps with the corresponding block
-    dN represents feature maps resulting from a block before max poooling or up-sampling
-    dN_ represents feature maps resulting from a block after max poooling or up-sampling
-    x is the input and c is the conditions
-        
-    """
+
     def __init__(self, in_channels=3, out_channels=3):
         super(GeneratorUNet, self).__init__()
 
@@ -169,9 +160,9 @@ class GeneratorUNet(nn.Module):
         self.ch3 = nn.Conv2d(1, 128, 3, 1, 1, bias=True)
         self.ch4 = nn.Conv2d(1, 256, 3, 1, 1, bias=True)
 
-        self.con5 = UpFeat(512, 256)
-        self.con6 = UpFeat(256, 128)
-        self.con7 = UpFeat(128, 64)
+        self.con5 = Concatenation(512, 256)
+        self.con6 = Concatenation(256, 128)
+        self.con7 = Concatenation(128, 64)
 
         self.down1 = MainBl(32, 64)
         self.down2 = MainBl(64, 128)
@@ -186,7 +177,12 @@ class GeneratorUNet(nn.Module):
 
     def forward(self, x):
 
-        # U-Net generator with skip connections from encoder to decoder
+        # The implementation of the UResNet consisting of three down-sampling block, a bridge block, and three up-sampling block
+        # This network serves as the generator of our framwork
+        # chN and conN is for matching the number of feature maps with the corresponding block
+        # dN represents feature maps resulting from a block before max poooling or up-sampling
+        # dN_ represents feature maps resulting from a block after max poooling or up-sampling
+        # x is the input and c is the conditions
         
         d1 = self.ch1(x[0])
         d2 = self.down1((d1, x[1]))

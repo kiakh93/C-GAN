@@ -66,7 +66,7 @@ def main():
 
     # Training
     count = 0
-    tempD = 10
+    flagD = -1
     for epoch in range(opt.epoch, opt.n_epochs):
         for i, imgs in enumerate(dataloader):
 
@@ -92,8 +92,8 @@ def main():
                 loss_G = loss_mse
 
             if count >= 1000:
-                # Useing content loss and adversarial loss
-                tempD = 0
+                # Using content loss and adversarial loss
+                flagD = 0
                 # Adversarial loss
                 pred_fake = discriminator(gen_hr)
                 label_true = torch.empty_like(pred_fake).fill_(True)
