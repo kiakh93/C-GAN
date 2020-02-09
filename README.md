@@ -1,5 +1,5 @@
 
-# A deep learning framework for morphologic detail beyond the diffraction limit in infrared spectroscopic imaging
+# A deep learning framework for morphologic detail beyond the diffraction limit in infrared spectroscopic imaging [https://arxiv.org/abs/1911.04410]
 By Kianoush Falahkheirkhah, Kevin Yeh, Shachi Mittal, Luke Pfister, Rohit Bhargava
 # Refrences
 https://github.com/nvlabs/spade
