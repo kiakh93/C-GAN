@@ -80,4 +80,4 @@ class ImageDataset(Dataset):
         #return {'lr': img_lr, 'name': name}
 
     def __len__(self):
-        return 44430
+        return len(self.list_I)
