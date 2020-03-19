@@ -1,6 +1,6 @@
 """
 training code for our super resolution framework
-This code has been borroed from https://github.com/eriklindernoren/PyTorch-GAN/blob/master/implementations/srgan/srgan.py
+This code has been borrowed from https://github.com/eriklindernoren/PyTorch-GAN/blob/master/implementations/srgan/srgan.py
 """
 import argparse
 import os
