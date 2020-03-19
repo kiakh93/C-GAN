@@ -4,7 +4,6 @@ By Kianoush Falahkheirkhah, Kevin Yeh, Shachi Mittal, Luke Pfister, Rohit Bharga
 
 This repo provides the training code for used in this paper.
 ![GitHub Logo](/Images/img1.tiff)
-Format: ![Alt Text](url)
 # Refrences
 https://github.com/nvlabs/spade
 https://github.com/eriklindernoren/PyTorch-GAN/tree/master/implementations/srgan
