@@ -1,17 +1,3 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sun Jan 13 23:35:38 2019
-
-@author: kf4
-"""
-
-# -*- coding: utf-8 -*-
-"""
-Created on Thu Nov 29 22:23:23 2018
-
-@author: kf4
-"""
-
 import random
 import os
 import numpy as np
